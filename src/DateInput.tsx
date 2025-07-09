@@ -11,6 +11,7 @@ interface DateInputProps {
   value?: CalendarDate | null;
   onChange?: (date: CalendarDate | null) => void;
   defaultValue?: CalendarDate;
+  variant?: "default" | "inline" | "popup_only";
 }
 
 const locale = "pt-BR";
@@ -58,6 +59,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   value,
   onChange,
   defaultValue,
+  variant = "default",
 }) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
@@ -67,6 +69,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   const state = useDateFieldState({
     value,
     defaultValue,
+    isDisabled: variant === "popup_only",
     onChange: (newValue) => {
       onChange?.(newValue);
       setSelectedDate(newValue?.toDate("UTC"));
@@ -92,6 +95,7 @@ export const DateInput: React.FC<DateInputProps> = ({
   };
 
   const currentYear = selectedDate?.getFullYear() || new Date().getFullYear();
+
   const currentMonth = selectedDate?.getMonth() || new Date().getMonth();
 
   return (
@@ -108,6 +112,7 @@ export const DateInput: React.FC<DateInputProps> = ({
             display: "flex",
             padding: "4px 8px",
             border: "1px solid #ccc",
+            alignItems: "center",
             borderRadius: "4px",
             backgroundColor: "#fff",
             minWidth: "120px",
@@ -116,21 +121,22 @@ export const DateInput: React.FC<DateInputProps> = ({
           {state.segments.map((segment, i) => (
             <DateSegment key={i} segment={segment} state={state} />
           ))}
-        </div>
 
-        <button
-          type="button"
-          onClick={() => setIsCalendarOpen(!isCalendarOpen)}
-          style={{
-            padding: "4px 8px",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
-            backgroundColor: "#fff",
-            cursor: "pointer",
-          }}
-        >
-          📅
-        </button>
+          {variant !== "inline" && (
+            <button
+              type="button"
+              onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+              style={{
+                border: "none",
+                backgroundColor: "transparent",
+                marginLeft: "4px",
+                cursor: "pointer",
+              }}
+            >
+              📅
+            </button>
+          )}
+        </div>
       </div>
 
       {isCalendarOpen && (

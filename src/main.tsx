@@ -7,3 +7,7 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
+
+// TODO:
+// 1. put icon inside input
+// 2. variants: without popup, popup only

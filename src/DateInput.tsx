@@ -107,6 +107,7 @@ export const DateInput: React.FC<DateInputProps> = ({
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <div
           {...fieldProps}
+          onClick={variant === "popup_only" ? () => setIsCalendarOpen(true) : undefined}
           ref={ref}
           style={{
             display: "flex",

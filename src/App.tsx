@@ -28,17 +28,6 @@ const App: React.FC = () => {
       </div>
 
       <div>
-        <h2>Inline variant</h2>
-        <p>Can only type on the input, no popup available.</p>
-        <DateInput
-          variant="inline"
-          label="Select Date"
-          value={date2}
-          onChange={setDate2}
-        />
-      </div>
-
-      <div>
         <h2>Popup Only variant</h2>
 
         <p>
@@ -50,6 +39,17 @@ const App: React.FC = () => {
           label="Select Date"
           value={date3}
           onChange={setDate3}
+        />
+      </div>
+
+      <div>
+        <h2>Inline variant</h2>
+        <p>Can only type on the input, no popup available.</p>
+        <DateInput
+          variant="inline"
+          label="Select Date"
+          value={date2}
+          onChange={setDate2}
         />
       </div>
     </div>

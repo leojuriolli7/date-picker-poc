@@ -16,13 +16,20 @@ const App: React.FC = () => {
         gap: "20px",
       }}
     >
+      <h1>Unstyled New Date Picker POC</h1>
+
       <div>
-        <h1>Default variant</h1>
+        <h2>Default variant</h2>
+        <p>
+          Click the input to type a date, or click the calendar icon to open a
+          date picker popup.
+        </p>
         <DateInput label="Select Date" value={date} onChange={setDate} />
       </div>
 
       <div>
-        <h1>Inline variant</h1>
+        <h2>Inline variant</h2>
+        <p>Can only type on the input, no popup available.</p>
         <DateInput
           variant="inline"
           label="Select Date"
@@ -32,7 +39,11 @@ const App: React.FC = () => {
       </div>
 
       <div>
-        <h1>Popup Only variant</h1>
+        <h2>Popup Only variant</h2>
+
+        <p>
+          Clicking anywhere on the input will open a popup, no typing allowed.
+        </p>
 
         <DateInput
           variant="popup_only"

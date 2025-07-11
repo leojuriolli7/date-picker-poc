@@ -4,6 +4,7 @@ import { useDateField, useDateSegment } from "react-aria";
 import { useDateFieldState } from "react-stately";
 import { createCalendar, CalendarDate } from "@internationalized/date";
 import { DayPicker } from "react-day-picker";
+import { useClickAway } from "react-use";
 import "react-day-picker/dist/style.css";
 
 interface DateInputProps {
@@ -65,6 +66,10 @@ export const DateInput: React.FC<DateInputProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     value?.toDate("UTC") || defaultValue?.toDate("UTC")
   );
+
+  const pickerRef = useRef<HTMLDivElement>(null);
+
+  useClickAway(pickerRef, () => setIsCalendarOpen(false));
 
   const state = useDateFieldState({
     value,
@@ -142,6 +147,7 @@ export const DateInput: React.FC<DateInputProps> = ({
 
       {isCalendarOpen && (
         <div
+          ref={pickerRef}
           style={{
             position: "absolute",
             top: "100%",
